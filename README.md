@@ -1,2 +1,2 @@
 # mycrafthome
-New landing page for Renovate website
+Landing page for Renovate website
