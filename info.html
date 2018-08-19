@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<!--script for jQuery and materialize-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+
+
+<!-- Stylesheets -->
+<link rel="stylesheet" href="css/font-awesome.min.css"/>
+<link rel="stylesheet" src="css/style.css" />
+<link href="https://fonts.googleapis.com/css?family=Raleway:300" rel="stylesheet">
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" rel="stylesheet">
+
+<!--modal triggers-->
+<script>
+    jQuery(document).ready(function () {
+        // Init Modal
+        $("#modal1").modal();
+        $("#modal2").modal();
+        $("#modal3").modal();
+        $('#submit').click(function () {
+            doc.fromHTML($('#diary-content').html(), 15, 15, {
+                'width': 170,
+                'elementHandlers': specialElementHandlers
+            });
+            var name = $('first_name').text() + $('last_name').text()
+            var date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+            var doc_name = name+date+".pdf"
+            doc.save(doc_name);
+        });
+    });
+</script>
+
+<html>
+
+<head>
+    <meta name="Catswork" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+</head>
+
+
+<body style="
+    background-image: url(img/demo_bg.jpg);
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    ">
+    <header>
+        <!--navigation bar-->
+        <nav>
+            <div class="nav-wrapper black">
+                <a class="brand-logo center">Crafthome</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <center>
+            <h4 style="margin-bottom: 50px">Welcome to Crafthome Quote Analysis Service</h4>
+            <div class="row">
+                <div class="col s6">
+                    <br>
+                    <h5>File Upload: “Don't play the odds, play the man.” - Harvey Specter
+                    </h5>
+                </div>
+                <div class="col s6">
+                    <form action="#">
+                        <div class="file-field input-field">
+                            <div class="btn  grey darken-4">
+                                <span>File</span>
+                                <input type="file" multiple>
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" style="color:black">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr style="height:1px; border: none; color:#333;background-color:#333;">
+            <br>
+
+            <div class="row">
+                <div class="col s6">
+                    <h5>Additional Information: These are not necessary but will help us understand your renovation project</h5>
+                </div>
+                <div class="col s6">
+                    <a href="#modal1" class="btn waves-effect  grey darken-4" style="float:left; color:344651">Home Information</a>
+                    <br>
+                    <br>
+                    <a href="#modal2" class="btn waves-effect  grey darken-4" style="float:left; color:344651">Renovation Information</a>
+                    <br>
+                    <br>
+                    <a href="#modal3" class="btn waves-effect  grey darken-4" style="float:left; color:344651">Contractor Information</a>
+                </div>
+            </div>
+
+            <hr style="height:1px;  border: none; color:#333;background-color:#333;">
+            <br>
+            <h5>Contact Information</h5>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="first_name" type="text" class="validate">
+                            <label for="first_name" style="color:black">First Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="last_name" type="text" class="validate">
+                            <label for="last_name" style="color:black">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">email</i>
+                            <input id="email" type="email" class="validate">
+                            <label for="email" style="color:black">Email</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">phone</i>
+                            <input id="phone" type="tel" class="validate">
+                            <label for="phone" style="color:black">Phone</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <button id = "submit" class="btn waves-effect  grey darken-4">Submit</button>
+            <br>
+            <br>
+        </center>
+    </main>
+
+    <!--modals -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Add Profile</h4>
+            <form>
+                <div class="input-field">
+
+                    <input type="text" id="prefered_name">
+                    <label class="active purple-text" for="name">Prefered Name</label>
+                </div>
+                <div class="input-field">
+                    <input type="text" id="gsheets_link">
+                    <label class="active purple-text" for="sheet">Google Sheet Link</label>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button class="modal-action modal-close waves-effect btn  grey darken-4" type="button">Cancel</button>
+                    <button type="button" class="modal-action modal-close waves-effect btn  grey darken-4" id="basic_info_save">Confirm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <h4>Default Setting</h4>
+            <h5>Default setting includes: So is it not with me as with that Muse Stirr'd by a painted beauty to his verse, Who
+                heaven itself for ornament doth use And every fair with his fair doth rehearse Making a couplement of proud
+                compare, 5 With sun and moon, with earth and sea's rich gems, With April's first-born flowers, and all things
+                rare That heaven's air in this huge rondure hems. O' let me, true in love, but truly write, And then believe
+                me, my love is as fair 10 As any mother's child, though not so bright As those gold candles fix'd in heaven's
+                air: Let them say more than like of hearsay well; I will not praise that purpose not to sell.
+            </h5>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-action modal-close waves-effect btn  grey darken-4" type="button" id="modal_footer1">Cancel</button>
+            <button class="modal-action modal-close waves-effect btn  grey darken-4" type="button" id="save">Confirm</button>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <h4>Custom Setting</h4>
+            <h5>Information you would like to track:</h5>
+            <form action="#">
+                <p>
+                    <input type="checkbox" id="Name" />
+                    <label for="Name" class="">Name</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="Email" />
+                    <label for="Email">Email</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="Subject" />
+                    <label for="Subject">Subject</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="Date" />
+                    <label for="Date">Date</label>
+                </p>
+            </form>
+            <br>
+            <h5>Method of information tracking</h5>
+            <form action="#">
+                <p>
+                    <input type="checkbox" id="On_page" />
+                    <label for="On_page" class="">On-page manual tracking</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="S_Auto" />
+                    <label for="S_Auto">Automatic with label</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="F_Auto" />
+                    <label for="F_Auto">Automatic for email</label>
+                </p>
+            </form>
+            <br>
+            <div class="modal-footer">
+                <button class="modal-action modal-close waves-effect btn  grey darken-4" type="button" id="modal_footer1">Cancel</button>
+                <button class="modal-action modal-close waves-effect btn  grey darken-4" type="button" id="save">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <h4>Erase all data</h4>
+            <h5>Are you sure you want to erase all settings and personal information?
+            </h5>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-action modal-close waves-effect btn  grey darken-4" type="button">Cancel</button>
+            <button class="modal-action modal-close waves-effect btn  grey darken-4" type="button" id="confirm_erase">Confirm</button>
+
+        </div>
+    </div>
+
+
+
+
+</body>
+
+
+</html>
